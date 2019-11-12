@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<wfs:Transaction
+  service="WFS"
+  version="1.0.0"
+  outputFormat="GML2"
+  xmlns:bier="bier"
+  xmlns:wfs="http://www.opengis.net/wfs"
+  xmlns:gml="http://www.opengis.net/gml"
+  xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/wfs ../wfs/1.0.0/WFS-basic.xsd">
+<wfs:Update typeName="bier:koelsch_test">
+<wfs:Property>
+<wfs:Name>preis</wfs:Name>
+<wfs:Value>1.5</wfs:Value>
+</wfs:Property>
+<ogc:Filter>
+<ogc:FeatureId fid="koelsch_test.koelsch_test.19"/>
+</ogc:Filter>
+</wfs:Update>
+</wfs:Transaction>

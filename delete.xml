@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<wfs:Transaction
+  service="WFS"
+  version="1.0.0"
+  outputFormat="GML2"
+  xmlns:bier="bier"
+  xmlns:wfs="http://www.opengis.net/wfs"
+  xmlns:gml="http://www.opengis.net/gml"
+  xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/wfs ../wfs/1.0.0/WFS-basic.xsd">
+<wfs:Delete typeName="bier:koelsch_test">
+<ogc:Filter>
+<ogc:FeatureId fid="fid-bbce8cf_16e11433aa2_-7fe0"/>
+</ogc:Filter>
+</wfs:Delete>
+</wfs:Transaction>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, inital-scale=1, maximum-scale=1; user-scalablue=0;">
+    <title>Open Layers || Kölsch</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css"
+        href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+
+<body>
+    <div id="map"></div>
+    <div class="editButtons">
+        <button id="addPoint" class="button">
+            <i class="fa fa-map-marker fa-2x"></i>
+        </button>
+        <button id="modifyPoint" class="button">
+            <i class="fa fa-edit fa-2x"></i>
+        </button>
+        <button id="deletePoint" class="button">
+            <i class="fa fa-trash fa-2x"></i>
+        </button>
+        <button id="getInfo" class="button">
+            <i class="fa fa-info fa-2x"></i>
+        </button>
+    </div>
+    <div id="overlay">
+        <a href="javascript:void(0)" id="closebtn">&times;</a>
+        <div id="formForImport">
+            <form>
+                <input id="name" type="text" name="name" placeholder="Bitte Name eingeben"> <br>
+                <input id="bier" type="text" name="bier" placeholder="Bitte Kölsch eingeben"><br>
+                <input id="preis" type="number" name="preis" placeholder="Preis in EUR eingeben" min="1" max="5"
+                    step="0.1">
+                <button id="sendData" type="button" value="Send Data">Send data</button>
+            </form>
+        </div>
+    </div>
+    <p id="output"></p>
+    <script src="./index.js"></script>
+</body>
+
+</html>
