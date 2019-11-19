@@ -69121,10 +69121,11 @@ var vectorlayer = new _layer.Vector({
 }); //Basemap
 
 var xyzURL = 'https://{1-4}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+var baselayer = new _XYZ.default({
+  url: xyzURL
+});
 var basemap = new _Tile.default({
-  source: new _XYZ.default({
-    url: xyzURL
-  })
+  source: baselayer
 }); //create map with layers
 
 var map = new _ol2.Map({
@@ -69362,7 +69363,8 @@ var xhr = new XMLHttpRequest(); //new select-interaction
 var select = new _Select.default({
   source: datasource
 });
-map.addInteraction(select); //new draw-interaction
+map.addInteraction(select);
+select.setActive(false); //new draw-interaction
 
 var draw = new _Draw.default({
   source: datasource,
@@ -69433,7 +69435,7 @@ btnDelete.onclick = function () {
 }; //add features 
 
 
-function drawMethod(btn) {
+function drawMethod() {
   modify.setActive(false);
   select.setActive(false);
   draw.setActive(true);
@@ -69495,7 +69497,7 @@ function drawEnd(e) {
 
 
 btnAdd.onclick = function () {
-  return drawMethod(btnAdd, 'Point');
+  return drawMethod();
 }; //modify features
 
 
@@ -69578,6 +69580,9 @@ closeButton.onclick = function () {
 
 btnInfo.onclick = function () {
   showOverlay();
+  btnAdd.classList.remove('active');
+  btnModify.classList.remove('active');
+  btnDelete.classList.remove('active');
   btnInfo.classList.add('active');
 };
 },{"ol/ol.css":"node_modules/ol/ol.css","ol":"node_modules/ol/index.js","ol/layer/Tile":"node_modules/ol/layer/Tile.js","ol/source/XYZ":"node_modules/ol/source/XYZ.js","ol/source/Vector":"node_modules/ol/source/Vector.js","ol/layer":"node_modules/ol/layer.js","ol/format/GeoJSON":"node_modules/ol/format/GeoJSON.js","ol/loadingstrategy":"node_modules/ol/loadingstrategy.js","ol/interaction/Select":"node_modules/ol/interaction/Select.js","ol/interaction/Modify":"node_modules/ol/interaction/Modify.js","ol/interaction/Draw":"node_modules/ol/interaction/Draw.js","ol/format/WFS":"node_modules/ol/format/WFS.js","ol/format/GML":"node_modules/ol/format/GML.js","ol/style":"node_modules/ol/style.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -69608,7 +69613,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46601" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44129" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,0 +1,63 @@
+<featureType>
+  <id>FeatureTypeInfoImpl--13143d06:16ded5e0e42:-7ff9</id>
+  <name>koelsch</name>
+  <nativeName>koelsch</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl--13143d06:16ded5e0e42:-7ffb</id>
+  </namespace>
+  <title>koelsch</title>
+  <keywords>
+    <string>features</string>
+    <string>koelsch</string>
+    <string>gaffel</string>
+    <string>reissdorf</string>
+    <string>sünner</string>
+    <string>früh</string>
+    <string>dom</string>
+    <string>mühlen</string>
+    <string>sion</string>
+    <string>peters</string>
+    <string>gilden</string>
+    <string>hellers</string>
+  </keywords>
+  <nativeCRS>GEOGCS[&quot;WGS 84&quot;, 
+  DATUM[&quot;World Geodetic System 1984&quot;, 
+    SPHEROID[&quot;WGS 84&quot;, 6378137.0, 298.257223563, AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]], 
+    AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]], 
+  PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], 
+  UNIT[&quot;degree&quot;, 0.017453292519943295], 
+  AXIS[&quot;Geodetic longitude&quot;, EAST], 
+  AXIS[&quot;Geodetic latitude&quot;, NORTH], 
+  AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]]</nativeCRS>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>6.82668590545654</minx>
+    <maxx>7.13363838195801</maxx>
+    <miny>50.838264465332</miny>
+    <maxy>51.069263458252</maxy>
+    <crs>EPSG:4326</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>6.82668590545654</minx>
+    <maxx>7.13363838195801</maxx>
+    <miny>50.838264465332</miny>
+    <maxy>51.069263458252</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>REPROJECT_TO_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl--13143d06:16ded5e0e42:-7ffa</id>
+  </store>
+  <serviceConfiguration>false</serviceConfiguration>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <padWithZeros>false</padWithZeros>
+  <forcedDecimal>false</forcedDecimal>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

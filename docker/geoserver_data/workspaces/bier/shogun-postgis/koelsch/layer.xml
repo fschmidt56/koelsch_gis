@@ -1,0 +1,15 @@
+<layer>
+  <name>koelsch</name>
+  <id>LayerInfoImpl--13143d06:16ded5e0e42:-7ff8</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--13143d06:16ded5e0e42:-7ff7</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--13143d06:16ded5e0e42:-7ff9</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

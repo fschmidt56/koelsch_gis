@@ -34,12 +34,13 @@ const vectorlayer = new VectorLayer({
     style: styleKoelsch
 })
 //Basemap
-const xyzURL = 'https://{1-4}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+const xyzURL = 'https://{1-4}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+const baselayer = new XYZSource({
+    url: xyzURL
+});
 const basemap = new TileLayer({
-    source: new XYZSource({
-        url: xyzURL
-    }),
-})
+    source: baselayer
+});
 
 //create map with layers
 const map = new Map({
@@ -134,6 +135,7 @@ let select = new Select({
     source: datasource,
 });
 map.addInteraction(select);
+select.setActive(false);
 
 //new draw-interaction
 let draw = new Draw({
@@ -210,7 +212,7 @@ btnDelete.onclick = () => {
 }
 
 //add features 
-function drawMethod(btn) {
+function drawMethod() {
     modify.setActive(false);  
     select.setActive(false);  
     draw.setActive(true);
@@ -274,7 +276,7 @@ function drawEnd(e) {
 
 
 //add method to button
-btnAdd.onclick = () => drawMethod(btnAdd, 'Point');
+btnAdd.onclick = () => drawMethod();
 
 //modify features
 select.on('select', e => {
@@ -356,5 +358,8 @@ closeButton.onclick = () => {
 
 btnInfo.onclick = () => {
     showOverlay();
+    btnAdd.classList.remove('active');
+    btnModify.classList.remove('active');
+    btnDelete.classList.remove('active');
     btnInfo.classList.add('active');
 }

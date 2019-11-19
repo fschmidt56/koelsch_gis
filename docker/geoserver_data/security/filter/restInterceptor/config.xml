@@ -1,0 +1,7 @@
+<securityInterceptor>
+  <id>-15058ddb:16ded547482:-7feb</id>
+  <name>restInterceptor</name>
+  <className>org.geoserver.security.filter.GeoServerSecurityInterceptorFilter</className>
+  <allowIfAllAbstainDecisions>false</allowIfAllAbstainDecisions>
+  <securityMetadataSource>restFilterDefinitionMap</securityMetadataSource>
+</securityInterceptor>

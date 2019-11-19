@@ -1,0 +1,15 @@
+<layer>
+  <name>bus</name>
+  <id>LayerInfoImpl--13143d06:16ded5e0e42:-7feb</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--13143d06:16ded5e0e42:-7fef</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--13143d06:16ded5e0e42:-7fec</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

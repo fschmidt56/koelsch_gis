@@ -1,0 +1,55 @@
+<featureType>
+  <id>FeatureTypeInfoImpl--13143d06:16ded5e0e42:-7fec</id>
+  <name>bus</name>
+  <nativeName>bus</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl--13143d06:16ded5e0e42:-7ffb</id>
+  </namespace>
+  <title>bus</title>
+  <keywords>
+    <string>features</string>
+    <string>bus</string>
+    <string>kvb</string>
+    <string>öpnv</string>
+  </keywords>
+  <nativeCRS>GEOGCS[&quot;WGS 84&quot;, 
+  DATUM[&quot;World Geodetic System 1984&quot;, 
+    SPHEROID[&quot;WGS 84&quot;, 6378137.0, 298.257223563, AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]], 
+    AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]], 
+  PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], 
+  UNIT[&quot;degree&quot;, 0.017453292519943295], 
+  AXIS[&quot;Geodetic longitude&quot;, EAST], 
+  AXIS[&quot;Geodetic latitude&quot;, NORTH], 
+  AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]]</nativeCRS>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>6.8181586265564</minx>
+    <maxx>7.11995935440063</maxx>
+    <miny>50.8382682800293</miny>
+    <maxy>51.0692749023438</maxy>
+    <crs>EPSG:4326</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>6.8181586265564</minx>
+    <maxx>7.11995935440063</maxx>
+    <miny>50.8382682800293</miny>
+    <maxy>51.0692749023438</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl--13143d06:16ded5e0e42:-7ffa</id>
+  </store>
+  <serviceConfiguration>false</serviceConfiguration>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <padWithZeros>false</padWithZeros>
+  <forcedDecimal>false</forcedDecimal>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>
