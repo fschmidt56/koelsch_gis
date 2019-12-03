@@ -1,0 +1,65 @@
+<featureType>
+  <id>FeatureTypeInfoImpl--744849c0:16eabc1d4d2:-7ffc</id>
+  <name>preisfilter</name>
+  <nativeName>preisfilter</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl--13143d06:16ded5e0e42:-7ffb</id>
+  </namespace>
+  <title>preisfilter</title>
+  <keywords>
+    <string>features</string>
+    <string>preisfilter</string>
+  </keywords>
+  <srs>EPSG:3857</srs>
+  <nativeBoundingBox>
+    <minx>759943.2093</minx>
+    <maxx>811440.098490025</maxx>
+    <miny>6574782.59750247</miny>
+    <maxy>6634265.84299869</maxy>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>759943.2093</minx>
+    <maxx>811440.098490025</maxx>
+    <miny>6574782.59750247</miny>
+    <maxy>6634265.84299869</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="JDBC_VIRTUAL_TABLE">
+      <virtualTable>
+        <name>preisfilter</name>
+        <sql>SELECT geom, gastro, bier, preis FROM bier.koelsch_test WHERE preis BETWEEN %low% AND %high%
+</sql>
+        <escapeSql>false</escapeSql>
+        <geometry>
+          <name>geom</name>
+          <type>Geometry</type>
+          <srid>-1</srid>
+        </geometry>
+        <parameter>
+          <name>high</name>
+          <defaultValue>3</defaultValue>
+          <regexpValidator>[+-]?([0-9]*[.])?[0-9]+</regexpValidator>
+        </parameter>
+        <parameter>
+          <name>low</name>
+          <defaultValue>1</defaultValue>
+          <regexpValidator>[+-]?([0-9]*[.])?[0-9]+</regexpValidator>
+        </parameter>
+      </virtualTable>
+    </entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl--13143d06:16ded5e0e42:-7ffa</id>
+  </store>
+  <serviceConfiguration>false</serviceConfiguration>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <padWithZeros>false</padWithZeros>
+  <forcedDecimal>false</forcedDecimal>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

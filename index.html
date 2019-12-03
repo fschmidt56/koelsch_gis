@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, inital-scale=1, maximum-scale=1; user-scalablue=0;">
     <title>Open Layers || Kölsch</title>
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="./index.css">
     <link rel="stylesheet" type="text/css"
         href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 </head>
@@ -39,7 +39,13 @@
         </div>
     </div>
     <p id="output"></p>
-    <script src="./index.js"></script>
+    <div class='slider' data-lbound='1' data-ubound='3'>
+        <hr />
+        <input id='minPreis' type='range' min='1' max='3' step='0.1' value='1' oninput='this.parentNode.dataset.lbound=this.value;' />
+        <input id='maxPreis' type='range' min='1' max='3' step='0.1' value='3' oninput='this.parentNode.dataset.ubound=this.value;' ' />
+    </div>
+
+    <script src="./index2.js"></script>
 </body>
 
 </html>

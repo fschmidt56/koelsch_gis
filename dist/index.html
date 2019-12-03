@@ -7,7 +7,7 @@
     <title>Open Layers || Kölsch</title>
     <link rel="stylesheet" type="text/css" href="/koelsch_gis.9ad09f98.css">
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-<script src="/koelsch_gis.9ad09f98.js"></script><link rel="stylesheet" href="/koelsch_gis.e31bb0bc.css"></head>
+<script src="/koelsch_gis.9ad09f98.js"></script><link rel="stylesheet" href="/index2.d4334c5b.css"></head>
 
 <body>
     <div id="map"></div>
@@ -37,7 +37,13 @@
         </div>
     </div>
     <p id="output"></p>
-    <script src="/koelsch_gis.e31bb0bc.js"></script>
+    <div class="slider" data-lbound="1" data-ubound="3">
+        <hr>
+        <input id="minPreis" type="range" min="1" max="3" step="0.1" value="1" oninput="this.parentNode.dataset.lbound=this.value;">
+        <input id="maxPreis" type="range" min="1" max="3" step="0.1" value="3" oninput="this.parentNode.dataset.ubound=this.value;" '="">
+    </div>
+
+    <script src="/index2.d4334c5b.js"></script>
 </body>
 
 </html>

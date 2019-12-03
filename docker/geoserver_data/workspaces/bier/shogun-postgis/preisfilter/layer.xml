@@ -1,0 +1,15 @@
+<layer>
+  <name>preisfilter</name>
+  <id>LayerInfoImpl--744849c0:16eabc1d4d2:-7ffb</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--15058ddb:16ded547482:-7ffc</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--744849c0:16eabc1d4d2:-7ffc</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

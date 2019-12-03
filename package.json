@@ -38,6 +38,7 @@
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/free-regular-svg-icons": "^5.11.2",
+    "@types/ol": "^5.3.6",
     "@types/openlayers": "^4.6.17",
     "jquery": "^3.4.1",
     "ol": "^6.0.1",
