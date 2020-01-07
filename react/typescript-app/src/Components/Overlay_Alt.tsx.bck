@@ -1,0 +1,49 @@
+import React from 'react';
+import { default as KoelschForm } from './Form';
+import ShowInfo from './ShowInfo';
+import { Map, MapBrowserEvent } from 'ol';
+
+interface OverlayState {
+    style: Object
+}
+
+interface OverlayProps {
+    map: Map | null
+}
+
+class Overlay extends React.Component<OverlayProps, OverlayState> {
+    constructor(props: OverlayProps) {
+        super(props);
+
+        this.state = {
+            style: {
+                width: '0'
+            }
+        };
+        this.showOverlay = this.showOverlay.bind(this);
+        this.hideOverlay = this.hideOverlay.bind(this);
+    }
+
+    showOverlay(): void {
+        const style = { width: '100%' }
+        this.setState({ style });
+    }
+    hideOverlay(): void {
+        const style = { width: 0 };
+        this.setState({ style });
+    }  
+
+    render(): JSX.Element {
+        return (
+            <div>
+                <ShowInfo onClick={this.showOverlay} id="infoButton"/>
+                <div className="overlay" style={this.state.style} >
+                    <KoelschForm />
+                    <a className="closebtn" onClick={this.hideOverlay}>×</a>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default Overlay;

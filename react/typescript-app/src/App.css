@@ -1,0 +1,148 @@
+html, body, #map, #root, .map {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+  background-color: #232323;
+  color: #fff
+}
+
+p {
+  color: #5babea
+}
+
+.form {
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-appearance: none;
+}
+
+.form label{
+  display: inline-block;
+  vertical-align: middle;
+  width: 100px;
+  text-align: center;
+  margin: 5px;
+}
+
+.form input {
+width:150px;
+line-height: 30px;
+font-size: 18px;
+background-color: rgba(47,47,49,0.2);
+color: #fff;
+border:none;
+outline: none; 
+box-shadow: 0 0 10px #5babea;
+border-radius: 5px;
+text-align: center;
+margin: 15px;
+-webkit-appearance: none;
+}
+
+.form p {
+  width:150px;
+  line-height: 30px;
+  font-size: 18px;
+  color: #5babea;
+  border:none;
+  outline: none; 
+  text-align: center;
+  margin: 15px;
+  -webkit-appearance: none;
+}
+
+.form button {
+  position: relative;
+  left: 50px;
+  line-height: 30px;
+  text-align: center;
+  margin: 15px;
+}
+
+.form input:valid {
+  box-shadow: 0 0 10px #d20003;
+}
+.form input:invalid {
+  box-shadow: 0 0 10px #5babea;
+}
+
+
+.ButtonGroup {
+  position: absolute; 
+  top: 10px;
+  right: 10px;
+}
+
+.Button {
+  outline:none;
+  border: none;
+  display: block;
+  margin-bottom: 10px;
+  background-color: #232323;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  box-shadow: 0px 0px 15px #5babea;
+  z-index: 1000;
+}
+
+.Button.active {
+  box-shadow: 0px 0px 15px #d20003;
+  outline:none;
+}
+
+.output {
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 60%);
+  -webkit-appearance: none;
+}
+
+#output {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-color: rgba(23,23,23, 0.95); 
+  overflow-x: hidden; 
+  transition: 0.6s; 
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  font-size: 60px;
+  text-decoration: none;
+  color: rgb(81, 155, 247);
+  cursor: pointer;
+}
+
+.MuiSlider-track, .MuiSlider-thumb {
+  color: #38556C;
+}
+.MuiSlider-thumb {
+  color: #38556C;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 15px}
+  .overlay .closebtn {
+    font-size: 15px;
+    top: 5px;
+    right: 5px;
+  }
+}

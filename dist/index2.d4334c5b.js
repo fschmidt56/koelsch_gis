@@ -69054,7 +69054,7 @@ var style_1 = require("ol/style");
 
 var GeometryType_1 = require("ol/geom/GeometryType");
 
-var typenameLayer = 'bier:preisfilter';
+var typenameLayer = 'bier:koelsch_test';
 var viewParamLow = document.getElementById('minPreis').min;
 var viewParamHigh = document.getElementById('maxPreis').max; //WFS load data
 
@@ -69574,7 +69574,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45071" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34151" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

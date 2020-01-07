@@ -1,0 +1,94 @@
+.App {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  background-color: #382a2a;
+}
+
+.App-logo {
+  height: 30vmin;
+}
+
+.App-header {
+  background-color: #232323;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(81, 155, 247);
+}
+
+.clock {
+  position: absolute; 
+  bottom: 0px;
+  right: 10px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.Button {
+  outline:none;
+  border: none;
+  display: block;
+  margin-bottom: 10px;
+  background-color: #232323;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  color: #ddd;
+  box-shadow: 0px 0px 15px #5babea;
+}
+
+.buttonGroup {
+  position: absolute; 
+  top: 10px;
+  right: 10px;
+}
+
+.Button:hover {
+  box-shadow: 0 0 15px #d26003;
+}
+
+.Button:focus {
+  box-shadow: 0 0 15px #d20003;
+}
+
+.overlay {
+  height: 100vh;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-color: rgba(255,255,255, 0.75); 
+  overflow-x: hidden; 
+  transition: 0.5s; 
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%; 
+  width: 100%; 
+  text-align: center; 
+  margin-top: 30px;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  font-size: 60px;
+  text-decoration: none;
+  color: rgb(81, 155, 247);
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 15px}
+  .overlay .closebtn {
+    font-size: 15px;
+    top: 5px;
+    right: 5px;
+  }
+}

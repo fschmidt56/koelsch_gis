@@ -13,8 +13,6 @@ import WFS from 'ol/format/WFS';
 import { Circle, Style, Stroke, Fill } from 'ol/style';
 import GeometryType from 'ol/geom/GeometryType';
 import { FeatureLike } from 'ol/Feature';
-import RenderFeature from 'ol/render/Feature';
-import { pushParseAndPop } from 'ol/xml';
 
 const typenameLayer: string = 'bier:preisfilter';
 let viewParamLow = (document.getElementById('minPreis') as HTMLInputElement).min;

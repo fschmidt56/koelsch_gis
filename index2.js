@@ -14,7 +14,7 @@ var Draw_1 = require("ol/interaction/Draw");
 var WFS_1 = require("ol/format/WFS");
 var style_1 = require("ol/style");
 var GeometryType_1 = require("ol/geom/GeometryType");
-var typenameLayer = 'bier:preisfilter';
+var typenameLayer = 'bier:koelsch_test';
 var viewParamLow = document.getElementById('minPreis').min;
 var viewParamHigh = document.getElementById('maxPreis').max;
 //WFS load data
