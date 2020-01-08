@@ -1,10 +1,5 @@
 import React from 'react';
-
-interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
-  fai: string;
-  name?: string;
-  onHover?: void;
-}
+import { ButtonProps } from '../types/interfaces'
 
 const Button = (props: ButtonProps): JSX.Element => {
   const {
@@ -15,7 +10,8 @@ const Button = (props: ButtonProps): JSX.Element => {
   } = props;
 
   return (
-    <button id='Button'
+    <button
+      id='Button'
       type="button"
       className='Button'
       {...passThroughProps}

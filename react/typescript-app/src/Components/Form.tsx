@@ -1,72 +1,33 @@
-import React, { ChangeEvent } from 'react';
+import React, { FormEvent } from 'react';
 import Button from './Button';
-import { FeatureLike } from 'ol/Feature';
+import { KoelschProps, KoelschState } from '../types/interfaces';
 
-interface KoelschState {
-  // name: string;
-  // bier: string;
-  // preis: number;
-  // dirty: boolean;
-}
+const Form = (props: KoelschProps, state: KoelschState): JSX.Element => {
 
-interface KoelschProps {
-  feature: FeatureLike
-}
+  const {
+    name,
+  } = props
 
-class Form extends React.Component<KoelschProps, KoelschState> {
-  // static getDerivedStateFromProps(props: KoelschProps, state: KoelschState): KoelschState {
-  //   if (!state.dirty) {
-  //     return {
-  //       name: props.feature.get('gastro'),
-  //       bier: props.feature.get('bier'),
-  //       preis: props.feature.get('preis'),
-  //       dirty: false
-  //     }
-  //   } else {
-  //     return {
-  //       name: state.name,
-  //       bier: state.bier,
-  //       preis: state.preis,
-  //       dirty: true
-  //     }
-  //   }
-  // }
 
-  constructor(props: KoelschProps) {
-    super(props);
-    // this.state = {
-    //   name: '',
-    //   bier: '',
-    //   preis: 0,
-    //   dirty: true
-    // }
-  }
-    
-  // handleChange = ({ target }: ChangeEvent): void => {
-  //   this.setState({ [(target as HTMLTextAreaElement).name]: (target as HTMLTextAreaElement).value as string | number, dirty: true } as { [K in keyof KoelschState]: KoelschState[K] })
-  // }
-
-  onSubmitClick = (event: any) => {
+  const onSubmitClick = (event: FormEvent) => {
     // TODO Get values from event
     console.log(event)
     event.preventDefault();
   }
 
-  render(): JSX.Element {
+  if (name === 'draw') {
     return (
       <React.Fragment>
-        <form 
+        <form
           className="form"
-          onSubmit={this.onSubmitClick} 
+          onSubmit={onSubmitClick}
         >
           <input
             id="name"
             type="text"
             name="name"
             placeholder="Name"
-            defaultValue={this.props.feature.get('gastro')}
-            //value={this.state.name}
-            //onChange={this.handleChange}
+            defaultValue={props.feature.get('gastro')}
             required
           /><br></br>
           <input
@@ -74,9 +35,7 @@ class Form extends React.Component<KoelschProps, KoelschState> {
             type="text"
             name="bier"
             placeholder="Kölsch"
-            defaultValue={this.props.feature.get('bier')}
-            //value={this.state.bier}
-            //onChange={this.handleChange}
+            defaultValue={props.feature.get('bier')}
             required
           /><br></br>
           <input
@@ -87,16 +46,92 @@ class Form extends React.Component<KoelschProps, KoelschState> {
             min="1"
             max="5"
             step="0.1"
-            defaultValue={this.props.feature.get('preis')}
-            //value={this.state.preis}
-            //onChange={this.handleChange}
+            defaultValue={props.feature.get('preis')}
             required
           /><br></br>
-          {/* <p>{this.state.name} <br></br> {this.state.bier} <br></br> {this.state.preis} EUR </p> */}
-          <input type="submit" value="Submit" />
-          <Button onSubmit={this.onSubmitClick} id="sendData" fai="fa fa-arrow-right fa-2x" />
+          {/* <input type="submit" value="Submit" /> */}
+          <Button
+            onSubmit={onSubmitClick}
+            id="sendData"
+            fai="fa fa-arrow-right fa-2x" />
         </form>
       </React.Fragment>
+    )
+  }
+  if (name === 'modify') {
+    return (
+      <React.Fragment>
+        <form
+          className="form"
+          onSubmit={onSubmitClick}
+        >
+          <input
+            id="name"
+            type="text"
+            name="name"
+            placeholder="Name"
+            defaultValue={props.feature.get('gastro')}
+            required
+          /><br></br>
+          <input
+            id="bier"
+            type="text"
+            name="bier"
+            placeholder="Kölsch"
+            defaultValue={props.feature.get('bier')}
+            required
+          /><br></br>
+          <input
+            id="preis"
+            type="number"
+            name="preis"
+            placeholder="Preis"
+            min="1"
+            max="5"
+            step="0.1"
+            defaultValue={props.feature.get('preis')}
+            required
+          /><br></br>
+          {/* <input type="submit" value="Submit" /> */}
+          <Button
+            onSubmit={onSubmitClick}
+            id="sendData"
+            fai="fa fa-arrow-right fa-2x" />
+        </form>
+      </React.Fragment>
+    )
+  }
+  if (name === 'delete') {
+    return (
+      <React.Fragment>
+        <div className='featureInfos' >
+          <b>Name: </b><p>{props.feature.get('gastro')}</p>
+          <br></br>
+          <b>Kölsch: </b><p>{props.feature.get('bier')}</p>
+          <br></br>
+          <b>Preis: </b><p>{props.feature.get('preis')} EUR</p>
+        </div>
+        /><br></br>
+        {/* <input type="submit" value="Submit" /> */}
+        <Button
+          onSubmit={onSubmitClick}
+          id="sendData"
+          fai="fa fa-arrow-right fa-2x"
+        />
+      </React.Fragment>
+    )
+  }
+  else {
+    return (
+      <React.Fragment>
+        <div className='featureInfos' >
+          <b>Name: </b><p>{props.feature.get('gastro')}</p>
+          <br></br>
+          <b>Kölsch: </b><p>{props.feature.get('bier')}</p>
+          <br></br>
+          <b>Preis: </b><p>{props.feature.get('preis')} EUR</p>
+        </div>
+      </React.Fragment >
     )
   }
 }

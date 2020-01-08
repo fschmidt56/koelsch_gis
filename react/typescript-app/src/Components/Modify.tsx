@@ -1,44 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Select, { SelectEvent } from 'ol/interaction/Select'
 import Modify, { ModifyEvent } from 'ol/interaction/Modify';
 import Button from './Button';
-import { datasource } from '../utils/vectorlayer';
-import { Map, Feature } from 'ol';
-import { credentials, transactionParameters, wfsTransaction, geoserverTransactionURL, xhr } from '../config/config';
+import { Feature } from 'ol';
+import { MapUtils } from '../utils/MapUtils';
+import { requestHeaders, transactionParameters, wfsTransaction, geoserverTransactionURL } from '../config/config';
+import { refreshData } from '../utils/otherFunctions';
+import { ModifyProps } from '../types/interfaces';
 
-interface ModifyProps {
-    map: Map | null;
-}
+const select: Select = MapUtils.createSelect();
+const modify: Modify = MapUtils.createModify();
 
 const ModifyPoints = (props: ModifyProps): JSX.Element => {
-    let select: Select = new Select({
-    });
 
-    let modify: Modify = new Modify({
-        source: datasource,
-    });
+    const {
+        isActive,
+        map,
+    } = props
 
-    if (props.map) {
-        props.map.addInteraction(select);
-        props.map.addInteraction(modify);
+    useEffect(() => {
+        select.setActive(isActive);
         modify.setActive(false);
-        select.setActive(false);
-    }
-  
-    let selectedFeature: Feature
+    }, [isActive])
 
-    function handleModify() {
-        select.setActive(!select.getActive());
-        let modifyButton = document.getElementById('modifyButton')
-        if (modifyButton!.classList.contains('active')) {
-            modifyButton!.classList.remove('active')
-        }
-        else { modifyButton!.classList.add('active') }
-          //modify features
+    if (map) {
+        map.addInteraction(select);
+        map.addInteraction(modify);
+        modify.setActive(false);
+        select.setActive(isActive);
         select.on('select', (e: SelectEvent) => {
-            //draw.setActive(false);
             selectedFeature = e.target.getFeatures().getArray()[0];
-            //if (!selectedFeature) return alert('Select a feature to modify data.');
             modify.setActive(true);
             modify.on('modifyend', (e: ModifyEvent) => {
                 selectedFeature.getId();
@@ -46,40 +37,33 @@ const ModifyPoints = (props: ModifyProps): JSX.Element => {
                 let xmlString = new XMLSerializer().serializeToString(
                     wfsTransaction.writeTransaction([], [selectedFeature], [], transactionParameters)
                 );
-                const outputMessage = (document.getElementById('output') as HTMLTextAreaElement);
-                xhr.open('POST', geoserverTransactionURL, true, credentials.username, credentials.password)
-                xhr.setRequestHeader('Content-type', 'text/plain')
-                xhr.send(xmlString)
-                xhr.onreadystatechange = function (): void {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        outputMessage.innerHTML = 'Feature was successfully modified.'
-                        setTimeout(function (): void {
-                            outputMessage.innerHTML = "";
-                        }, 3000);
-                        datasource!.clear();
-                        datasource!.refresh();
-                    }
-                    else {
-                        outputMessage.innerHTML = 'Error: Feature could not be modified.';
-                        setTimeout(function (): void {
-                            outputMessage.innerHTML = "";
-                        }, 3000);
-                    }
-                }
-                modifyButton!.classList.remove('active');
+                fetch(geoserverTransactionURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: requestHeaders,
+                    body: xmlString
+                })
+                    .then(response => console.log('Feature successfully modified.'))
+                    .catch(error => console.log(error + 'Feature was not modified.'));
+                refreshData();
                 modify.setActive(false);
                 select.setActive(false);
-                //btnDelete.classList.remove('active');
-                //btnModify.classList.remove('active');
-                //btnInfo.classList.remove('active');
+                props.onActiveChange(false);
             })
         });
     }
 
+    let selectedFeature: Feature
+
+    function handleModify() {
+        select.setActive(!select.getActive());
+        props.onActiveChange(select.getActive());
+    }
+
     return (
-        <Button 
+        <Button
             id='modifyButton'
-            className='Button'
+            className={isActive? 'Button active' : 'Button'}
             fai='fa fa-edit fa-2x'
             onClick={handleModify}
         />

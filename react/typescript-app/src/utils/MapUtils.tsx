@@ -1,12 +1,15 @@
 import { Map, View } from 'ol';
 import TileLayer from 'ol/layer/Tile';
 import XYZSource from 'ol/source/XYZ';
-
-import vectorlayer from './vectorlayer';
+import vectorLayer from './vectorlayer';
+import Select from 'ol/interaction/Select';
+import Modify from 'ol/interaction/Modify'
+import { mapCenter, mapZoom, rotationStatus, baseLayerURL } from '../config/config';
+import { datasource } from './vectorlayer';
 
 export class MapUtils {
     static createBaseLayer() {
-        const xyzURL: string = 'https://{1-4}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+        const xyzURL: string = baseLayerURL;
         const baseSource: XYZSource = new XYZSource({
             url: xyzURL
         });
@@ -22,14 +25,25 @@ export class MapUtils {
 
         const map = new Map({
             target: 'map',
-            layers: [baseLayer, vectorlayer],
+            layers: [baseLayer, vectorLayer],
             view: new View({
-                center: [774444.5768, 6611028.9864],
-                zoom: 11,
-                enableRotation: false,
+                center: mapCenter,
+                zoom: mapZoom,
+                enableRotation: rotationStatus,
             })
         });
+          return map;
+    }
 
-        return map;
+    static createSelect() {
+        const select: Select = new Select();
+        return select;
+    }
+
+    static createModify() {
+        const modify: Modify = new Modify({
+            source: datasource,
+        });
+        return modify;
     }
 }

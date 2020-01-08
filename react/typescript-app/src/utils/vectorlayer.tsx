@@ -2,11 +2,8 @@ import VectorSource from 'ol/source/Vector';
 import { Vector as VectorLayer } from 'ol/layer';
 import { bbox as bboxStrategy } from 'ol/loadingstrategy';
 import GeoJSON from 'ol/format/GeoJSON';
-import styleKoelsch from '../Components/koelschstyles';
+import styleKoelsch from '../utils/FeatureStyles';
 import {geoserverTransactionURL, typenameLayer} from '../config/config'
- 
-//let viewParamLow = (document.getElementById('minPreis') as HTMLInputElement).min;
-//let viewParamHigh = (document.getElementById('maxPreis') as HTMLInputElement).max;
 
 export let datasource: VectorSource | undefined = undefined;
 if (!datasource) {
@@ -24,9 +21,9 @@ if (!datasource) {
 }
 
 //add vectorlayer
-const vectorlayer: VectorLayer = new VectorLayer({
+const vectorLayer: VectorLayer = new VectorLayer({
   source: datasource,
   style: styleKoelsch
 });
 
-export default vectorlayer;
+export default vectorLayer;

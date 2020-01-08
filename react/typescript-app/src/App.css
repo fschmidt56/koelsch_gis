@@ -121,6 +121,19 @@ margin: 15px;
   transition: 0.6s; 
 }
 
+.featureInfos {
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-appearance: none;
+}
+
+.featureInfos b {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .overlay .closebtn {
   position: absolute;
   top: 5px;
