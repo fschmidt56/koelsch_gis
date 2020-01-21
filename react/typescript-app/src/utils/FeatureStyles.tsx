@@ -29,22 +29,22 @@ function styleFillColor(feature: FeatureLike): fillColor<string> {
 function styleStrokeColor(feature: FeatureLike): strokeColor<string, number> {
   let sorte: string = feature.get('bier')
   switch (sorte) {
-    case 'Dom': return { color: '#8c1918', width: 2 };
-    case 'Früh': return { color: '#e4011e', width: 2 };
-    case 'Gaffel': return { color: '#e1b54f', width: 2 };
-    case 'Ganser': return { color: '#d4b36e', width: 2 };
-    case 'Gilden': return { color: '#b5832f', width: 2 };
-    case 'Hellers': return { color: '#bb5a63', width: 2 };
-    case 'Mühlen': return { color: '#232323', width: 2 };
-    case 'Päffgen': return { color: '#2a5130', width: 2 };
-    case 'Peters': return { color: '#eeedb6', width: 2 };
-    case 'Reissdorf': return { color: '#977112', width: 2 };
-    case 'Schmitz': return { color: '#232323', width: 2 };
-    case 'Schreckenskammer': return { color: '#922743', width: 2 };
-    case 'Sion': return { color: '#002245', width: 2 };
-    case 'Sünner': return { color: '#007527', width: 2 };
-    case 'Zunft': return { color: '#232323', width: 2 };
-    default: return { color: '#d3d3d3', width: 2 };
+    case 'Dom': return { color: '#8c1918', width: 3 };
+    case 'Früh': return { color: '#e4011e', width: 3 };
+    case 'Gaffel': return { color: '#e1b54f', width: 3 };
+    case 'Ganser': return { color: '#d4b36e', width: 3 };
+    case 'Gilden': return { color: '#b5832f', width: 3 };
+    case 'Hellers': return { color: '#bb5a63', width: 3 };
+    case 'Mühlen': return { color: '#232323', width: 3 };
+    case 'Päffgen': return { color: '#2a5130', width: 3 };
+    case 'Peters': return { color: '#eeedb6', width: 3 };
+    case 'Reissdorf': return { color: '#977112', width: 3 };
+    case 'Schmitz': return { color: '#232323', width: 3 };
+    case 'Schreckenskammer': return { color: '#922743', width: 3 };
+    case 'Sion': return { color: '#002245', width: 3 };
+    case 'Sünner': return { color: '#007527', width: 3 };
+    case 'Zunft': return { color: '#232323', width: 3 };
+    default: return { color: '#d3d3d3', width: 3 };
   }
 }
 
@@ -52,7 +52,7 @@ function styleStrokeColor(feature: FeatureLike): strokeColor<string, number> {
 function styleKoelsch(feature: FeatureLike): Style {
   let koelsch_style: Style = new Style({
     image: new Circle({
-      radius: 7.5,
+      radius: feature.get('selected') ? 12 : 7.5,
       fill: new Fill(styleFillColor(feature)),
       stroke: new Stroke(styleStrokeColor(feature))
     })
@@ -61,3 +61,14 @@ function styleKoelsch(feature: FeatureLike): Style {
 }
 
 export default styleKoelsch;
+
+export function styleKoelschSelected(feature: FeatureLike) {
+  let koelsch_style_selected: Style = new Style({
+    image: new Circle({
+      radius: 12,
+      fill: new Fill(styleFillColor(feature)),
+      stroke: new Stroke(styleStrokeColor(feature))
+    })
+  })
+  return koelsch_style_selected;
+}

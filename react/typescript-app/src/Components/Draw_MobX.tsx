@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Draw, { DrawEvent } from 'ol/interaction/Draw';
 import { Feature, } from 'ol';
 import Button from './Button';
 import { datasource } from '../utils/vectorlayer';
 import { checkInputLetters, checkInputNumbers, refreshData } from '../utils/otherFunctions';
 import { requestHeaders, transactionParameters, wfsTransaction, geoserverTransactionURL, geometryType } from '../config/config';
-import { DrawProps, InteractionType } from '../types/interfaces';
+import { DrawProps } from '../types/interfaces';
 import Overlay from './Overlay';
 import { EventsKey } from 'openlayers';
+import { stores } from '../stores/stores';
+import { observer } from 'mobx-react-lite';
 
 let draw: Draw = new Draw({
     source: datasource,
@@ -17,14 +19,11 @@ let draw: Draw = new Draw({
 
 let listenerFunctions: EventsKey[] = [];
 
-const DrawPoints = (props: DrawProps): JSX.Element => {
+const DrawPoints = observer((props: DrawProps): JSX.Element => {
 
-    const [overlay, showOverlay] = useState<InteractionType>(null)
-
-    const {
-        isActive,
-        map,
-    } = props;
+    const { overlay, showOverlay } = stores.editStore;
+    const { map } = stores.mapStore;
+    const { isActive } = props;
 
 
     if (map) {
@@ -40,7 +39,7 @@ const DrawPoints = (props: DrawProps): JSX.Element => {
         draw.setActive(isActive);
         showOverlay(null);
         refreshData();
-    }, [isActive])
+    }, [isActive, showOverlay])
 
     function handleDraw() {
         draw.setActive(!draw.getActive());
@@ -65,7 +64,6 @@ const DrawPoints = (props: DrawProps): JSX.Element => {
             let xmlString = new XMLSerializer().serializeToString(
                 wfsTransaction.writeTransaction([feature], [], [], transactionParameters)
             )
-            console.log(xmlString);
             fetch(geoserverTransactionURL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -96,6 +94,6 @@ const DrawPoints = (props: DrawProps): JSX.Element => {
             {overlay}
         </>
     )
-}
+});
 
 export default DrawPoints;

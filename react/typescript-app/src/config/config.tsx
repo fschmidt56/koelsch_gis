@@ -29,7 +29,7 @@ export const wfsTransaction: WFS = new WFS();
 
 //URLs
 export const geoserverTransactionURL: string = 'http://10.133.7.119/geoserver/wfs?service=wfs&version=1.1.0';
-export const baseLayerURL = 'https://{1-4}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+export const baseLayerURL = 'https://{1-4}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
 
 //map-properties
 export const mapCenter = [774444.5768, 6611028.9864];

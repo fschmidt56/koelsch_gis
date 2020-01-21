@@ -1,0 +1,97 @@
+import React, { useState } from 'react';
+import { MapBrowserEvent } from 'ol';
+import { default as KoelschForm } from './Form';
+import Feature, { FeatureLike } from 'ol/Feature';
+import { OverlayProps } from '../types/interfaces';
+
+const Overlay = (props: OverlayProps): JSX.Element => {
+
+    const {
+        map,
+        name,
+    } = props
+
+    const [selectedFeature, setSelectedFeature] = useState<FeatureLike>(new Feature())
+
+    if (map) {
+        map.on('click', function (e: MapBrowserEvent): void {
+            map!.forEachFeatureAtPixel(e.pixel, function showBeer(feature: FeatureLike): void {
+                setSelectedFeature(feature);
+            })
+        })
+    }
+
+    return (
+        <div></div>
+    )
+
+    // if (name === 'info') {
+    //     return (
+    //         <div
+    //             id="overlay"
+    //             className="overlay"
+    //         >
+    //             <KoelschForm
+    //                 name={name}
+    //                 feature={selectedFeature}
+    //             />
+    //         </div>
+
+    //     )
+    // }
+    // if (name === 'draw') {
+    //     return (
+    //         <div
+    //             id="overlay"
+    //             className="overlay"
+    //         >
+    //             <KoelschForm
+    //                 name={name}
+    //                 feature={selectedFeature}
+    //             />
+    //         </div>
+
+    //     )
+    // }
+    // if (name === 'modify') {
+    //     return (
+    //         <div
+    //             id="overlay"
+    //             className="overlay"
+    //         >
+    //             <KoelschForm
+    //                 name={name}
+    //                 feature={selectedFeature}
+    //             />
+
+    //         </div>
+    //     )
+    // }
+    // if (name === 'delete') {
+    //     return (
+    //         <div
+    //             id="overlay"
+    //             className="overlay"
+    //         >
+    //             <KoelschForm
+    //                 name={name}
+    //                 feature={selectedFeature}
+    //             />
+
+    //         </div>
+    //     )
+    // }
+    // else {
+    //     return (
+    //         <div
+    //             id="overlay"
+    //             className="overlay"
+    //         >
+    //         </div>
+
+
+    //     )
+    }
+}
+
+export default Overlay;

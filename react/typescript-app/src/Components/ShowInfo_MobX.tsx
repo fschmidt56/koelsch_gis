@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from './Button';
 import { InfoProps } from '../types/interfaces';
 import Overlay from './Overlay';
 import { MapBrowserEvent } from 'ol';
 import Feature, { FeatureLike } from 'ol/Feature';
+import { stores } from '../stores/stores';
+import { observer } from 'mobx-react-lite';
 
 const mapListeners = [];
 
-const ShowInfo = (props: InfoProps): JSX.Element => {
+const ShowInfo = observer((props: InfoProps): JSX.Element => {
 
-    const [selectedFeature, setSelectedFeature] = useState<Feature>(new Feature());
+    const { selectedFeature, setSelectedFeature } = stores.infoStore
+    const { map } = stores.mapStore
 
     const {
-        map,
         isActive,
         onActiveChange,
         ...passThroughProps
@@ -62,6 +64,6 @@ const ShowInfo = (props: InfoProps): JSX.Element => {
             }
         </>
     )
-}
+})
 
 export default ShowInfo;

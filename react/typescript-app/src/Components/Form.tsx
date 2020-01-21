@@ -1,18 +1,26 @@
 import React, { FormEvent } from 'react';
-import Button from './Button';
-import { KoelschProps, KoelschState } from '../types/interfaces';
+import { KoelschProps } from '../types/interfaces';
+import { stores } from '../stores/stores';
 
-const Form = (props: KoelschProps, state: KoelschState): JSX.Element => {
+
+const Form = (props: KoelschProps): JSX.Element => {
 
   const {
     name,
+    feature,
+    onSaveClick
   } = props
 
+  //const { selectedFeature } = stores.infoStore
 
   const onSubmitClick = (event: FormEvent) => {
-    // TODO Get values from event
     console.log(event)
     event.preventDefault();
+    console.log(feature)
+    if (onSaveClick)
+      if (feature) {
+        onSaveClick(feature);
+      }
   }
 
   if (name === 'draw') {
@@ -27,17 +35,29 @@ const Form = (props: KoelschProps, state: KoelschState): JSX.Element => {
             type="text"
             name="name"
             placeholder="Name"
-            defaultValue={props.feature.get('gastro')}
+            defaultValue={feature && feature.get('gastro')}
+            onChange={(changeEvent: any) => {
+              if (feature) {
+                feature.set('gastro', changeEvent.target.value)
+              }
+            }}
             required
-          /><br></br>
+          />
+          <br></br>
           <input
             id="bier"
             type="text"
             name="bier"
             placeholder="Kölsch"
-            defaultValue={props.feature.get('bier')}
+            defaultValue={feature && feature.get('bier')}
+            onChange={(changeEvent: any) => {
+              if (feature) {
+                feature.set('bier', changeEvent.target.value)
+              }
+            }}
             required
-          /><br></br>
+          />
+          <br></br>
           <input
             id="preis"
             type="number"
@@ -45,15 +65,17 @@ const Form = (props: KoelschProps, state: KoelschState): JSX.Element => {
             placeholder="Preis"
             min="1"
             max="5"
-            step="0.1"
-            defaultValue={props.feature.get('preis')}
+            step="0.05"
+            defaultValue={feature && feature.get('preis')}
+            onChange={(changeEvent: any) => {
+              if (feature) {
+                feature.set('preis', changeEvent.target.value)
+              }
+            }}
             required
-          /><br></br>
-          {/* <input type="submit" value="Submit" /> */}
-          <Button
-            onSubmit={onSubmitClick}
-            id="sendData"
-            fai="fa fa-arrow-right fa-2x" />
+          />
+          <br></br>
+          <input type="submit" value="Create" />
         </form>
       </React.Fragment>
     )
@@ -70,7 +92,12 @@ const Form = (props: KoelschProps, state: KoelschState): JSX.Element => {
             type="text"
             name="name"
             placeholder="Name"
-            defaultValue={props.feature.get('gastro')}
+            defaultValue={feature && feature.get('gastro')}
+            onChange={(changeEvent: any) => {
+              if (feature) {
+                feature.set('gastro', changeEvent.target.value)
+              }
+            }}
             required
           /><br></br>
           <input
@@ -78,7 +105,12 @@ const Form = (props: KoelschProps, state: KoelschState): JSX.Element => {
             type="text"
             name="bier"
             placeholder="Kölsch"
-            defaultValue={props.feature.get('bier')}
+            defaultValue={feature && feature.get('bier')}
+            onChange={(changeEvent: any) => {
+              if (feature) {
+                feature.set('bier', changeEvent.target.value)
+              }
+            }}
             required
           /><br></br>
           <input
@@ -88,36 +120,17 @@ const Form = (props: KoelschProps, state: KoelschState): JSX.Element => {
             placeholder="Preis"
             min="1"
             max="5"
-            step="0.1"
-            defaultValue={props.feature.get('preis')}
+            step="0.05"
+            defaultValue={feature && feature.get('preis')}
+            onChange={(changeEvent: any) => {
+              if (feature) {
+                feature.set('preis', changeEvent.target.value)
+              }
+            }}
             required
           /><br></br>
-          {/* <input type="submit" value="Submit" /> */}
-          <Button
-            onSubmit={onSubmitClick}
-            id="sendData"
-            fai="fa fa-arrow-right fa-2x" />
+          <input type="submit" value="Modify" />
         </form>
-      </React.Fragment>
-    )
-  }
-  if (name === 'delete') {
-    return (
-      <React.Fragment>
-        <div className='featureInfos' >
-          <b>Name: </b><p>{props.feature.get('gastro')}</p>
-          <br></br>
-          <b>Kölsch: </b><p>{props.feature.get('bier')}</p>
-          <br></br>
-          <b>Preis: </b><p>{props.feature.get('preis')} EUR</p>
-        </div>
-        /><br></br>
-        {/* <input type="submit" value="Submit" /> */}
-        <Button
-          onSubmit={onSubmitClick}
-          id="sendData"
-          fai="fa fa-arrow-right fa-2x"
-        />
       </React.Fragment>
     )
   }
@@ -125,11 +138,11 @@ const Form = (props: KoelschProps, state: KoelschState): JSX.Element => {
     return (
       <React.Fragment>
         <div className='featureInfos' >
-          <b>Name: </b><p>{props.feature.get('gastro')}</p>
+          <b>Name: </b><p>{feature && feature.get('gastro')}</p>
           <br></br>
-          <b>Kölsch: </b><p>{props.feature.get('bier')}</p>
+          <b>Kölsch: </b><p>{feature && feature.get('bier')}</p>
           <br></br>
-          <b>Preis: </b><p>{props.feature.get('preis')} EUR</p>
+          <b>Preis: </b><p>{feature && feature.get('preis')} EUR</p>
         </div>
       </React.Fragment >
     )

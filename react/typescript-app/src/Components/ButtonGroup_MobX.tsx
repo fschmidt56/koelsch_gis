@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import { ButtonGroupProps, ActiveButton } from '../types/interfaces';
-import DrawButton from './Draw';
-import ModifyButton from './Modify';
+import React from 'react';
+import { ButtonGroupProps } from '../types/interfaces';
+import DrawButton from './Draw_MobX';
+import ModifyButton from './Modify_MobX';
 import DeleteButton from './Delete';
-import InfoButton from './ShowInfo';
+import InfoButton from './ShowInfo_MobX';
+import { stores } from '../stores/stores';
+import { observer } from 'mobx-react-lite';
 
-const ButtonGroup = (props: ButtonGroupProps) => {
+const ButtonGroup = observer((props: ButtonGroupProps) => {
 
-    const [activeButton, setActive] = useState<ActiveButton>(undefined); 
-
-    const {
-        map
-    } = props
+    const { map } = stores.mapStore
+    const { activeButton, setActive } = stores.buttonGroupStore
 
     return (
         <>
@@ -19,7 +18,7 @@ const ButtonGroup = (props: ButtonGroupProps) => {
                 <DrawButton
                     map={map}
                     isActive={activeButton === 'draw'}
-                    onActiveChange={(status: boolean) => status ? setActive('draw') : setActive(undefined)}                   
+                    onActiveChange={(status: boolean) => status ? setActive('draw') : setActive(undefined)}
                 />
                 <ModifyButton
                     map={map}
@@ -39,6 +38,6 @@ const ButtonGroup = (props: ButtonGroupProps) => {
             </div>
         </>
     );
-}
+})
 
 export default ButtonGroup;

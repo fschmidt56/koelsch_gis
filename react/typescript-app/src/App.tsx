@@ -2,12 +2,12 @@ import React from 'react';
 import './App.css';
 import 'ol/ol.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
-import Basemap from './Components/Basemap';
+import Basemap from './Components/Basemap_MobX';
 
 const App: React.FC = (): JSX.Element => {
   return (
     <div className="map">
-      <Basemap />
+        <Basemap />
     </div>
   );
 }

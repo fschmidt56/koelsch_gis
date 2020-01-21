@@ -6,6 +6,7 @@ import Select from 'ol/interaction/Select';
 import Modify from 'ol/interaction/Modify'
 import { mapCenter, mapZoom, rotationStatus, baseLayerURL } from '../config/config';
 import { datasource } from './vectorlayer';
+import { styleKoelschSelected } from './FeatureStyles';
 
 export class MapUtils {
     static createBaseLayer() {
@@ -36,13 +37,16 @@ export class MapUtils {
     }
 
     static createSelect() {
-        const select: Select = new Select();
+        const select: Select = new Select({
+            style: styleKoelschSelected
+        });
         return select;
     }
 
     static createModify() {
         const modify: Modify = new Modify({
             source: datasource,
+            style: styleKoelschSelected
         });
         return modify;
     }

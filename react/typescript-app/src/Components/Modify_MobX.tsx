@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Select, { SelectEvent } from 'ol/interaction/Select'
 import Modify, { ModifyEvent } from 'ol/interaction/Modify';
 import Button from './Button';
@@ -6,27 +6,27 @@ import { Feature } from 'ol';
 import { MapUtils } from '../utils/MapUtils';
 import { requestHeaders, transactionParameters, wfsTransaction, geoserverTransactionURL } from '../config/config';
 import { refreshData, checkInputLetters, checkInputNumbers } from '../utils/otherFunctions';
-import { ModifyProps, InteractionType } from '../types/interfaces';
+import { ModifyProps } from '../types/interfaces';
 import Overlay from './Overlay';
+import { stores } from '../stores/stores';
+import { observer } from 'mobx-react-lite';
 
 const select: Select = MapUtils.createSelect();
 const modify: Modify = MapUtils.createModify();
 
-const ModifyPoints = (props: ModifyProps): JSX.Element => {
+const ModifyPoints = observer((props: ModifyProps): JSX.Element => {
 
-    const [overlay, showOverlay] = useState<InteractionType>(null)
+    const { overlay, showOverlay } = stores.editStore;
+    const { map } = stores.mapStore;
 
-    const {
-        isActive,
-        map,
-    } = props
+    const { isActive } = props
 
     useEffect(() => {
         select.setActive(isActive);
         modify.setActive(false);
         showOverlay(null);
         refreshData();
-    }, [isActive])
+    }, [isActive, showOverlay])
 
     if (map) {
         map.addInteraction(select);
@@ -97,6 +97,6 @@ const ModifyPoints = (props: ModifyProps): JSX.Element => {
             {overlay}
         </>
     )
-}
+});
 
 export default ModifyPoints;
