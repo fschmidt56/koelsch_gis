@@ -1,7 +1,5 @@
 import React, { FormEvent } from 'react';
 import { KoelschProps } from '../types/interfaces';
-import { stores } from '../stores/stores';
-
 
 const Form = (props: KoelschProps): JSX.Element => {
 
@@ -11,12 +9,8 @@ const Form = (props: KoelschProps): JSX.Element => {
     onSaveClick
   } = props
 
-  //const { selectedFeature } = stores.infoStore
-
   const onSubmitClick = (event: FormEvent) => {
-    console.log(event)
     event.preventDefault();
-    console.log(feature)
     if (onSaveClick)
       if (feature) {
         onSaveClick(feature);

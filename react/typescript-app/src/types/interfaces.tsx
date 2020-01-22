@@ -1,5 +1,6 @@
 import { Map } from 'ol';
 import Feature from 'ol/Feature';
+import { ActionTypes } from '../redux/actions';
 
 export interface CredentialsGeoserver<T> {
   username: T,
@@ -25,12 +26,12 @@ export interface strokeColor<T, U> {
 }
 
 export interface MapProps {
-  mapStore?: MapState
+  mapStore?: MapState,
 }
 
-export type ActiveButton = 'draw' | 'modify' | 'delete' | 'info' | undefined
+export type ActiveButton = 'draw' | 'modify' | 'delete' | 'info' | undefined;
 
-export type OverlayNames = 'draw' | 'modify' | 'delete' | 'info' | undefined
+export type OverlayNames = 'draw' | 'modify' | 'delete' | 'info' | null;
 
 export interface MapState {
   map: BasemapState,
@@ -98,4 +99,41 @@ export interface IInfoStore {
   selectedFeature: Feature
   setSelectedFeature: (feature: Feature) => void
 }
+
+export interface InitialState {
+  map: null | Map;
+  activeButton: ActiveButton
+  overlay: InteractionType,
+  selectedFeature: Feature
+}
+
+export const Action = {
+  AMap: ActionTypes.SET_MAP,
+  AButton: ActionTypes.SET_ACTIVE_BUTTON,
+  AOverlay: ActionTypes.SHOW_OVERLAY,
+  AFeature: ActionTypes.SET_SELECTED_FEATURE
+} as const
+
+export interface Action_Map {
+  type: typeof Action.AMap,
+  payload: BasemapState
+}
+
+export interface Action_Button {
+  type: typeof Action.AButton,
+  payload: ActiveButton
+}
+
+export interface Action_Overlay {
+  type: typeof Action.AOverlay,
+  payload: InteractionType
+}
+
+export interface Action_Feature {
+  type: typeof Action.AFeature,
+  payload: Feature
+}
+
+export type Actions = Action_Map | Action_Button | Action_Overlay | Action_Feature;
+
 

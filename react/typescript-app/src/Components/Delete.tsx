@@ -7,15 +7,14 @@ import { requestHeaders, transactionParameters, wfsTransaction, geoserverTransac
 import { refreshData } from '../utils/otherFunctions';
 import { SelectProps } from '../types/interfaces';
 import { EventsKey } from 'openlayers';
-import { stores } from '../stores/stores';
 
 const select: Select = MapUtils.createSelect();
 let listenerFunctions: EventsKey[] = [];
 
 const DeletePoints = (props: SelectProps): JSX.Element => {
 
-    const {map} = stores.mapStore;
-    const { isActive } = props
+    //const {map} = stores.mapStore;
+    const { map, isActive } = props
 
     useEffect(() => {
         select.setActive(isActive);
@@ -44,6 +43,8 @@ const DeletePoints = (props: SelectProps): JSX.Element => {
                 props.onActiveChange(select.getActive())
             })
             listenerFunctions.push(listenerFunction);
+            console.log('Added delete interaction to map.');
+            
         }
     }
     let selectedFeature: Feature; //placeholder for deleting, modifying

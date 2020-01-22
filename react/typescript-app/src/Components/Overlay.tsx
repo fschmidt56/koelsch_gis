@@ -1,18 +1,16 @@
 import React from 'react';
 import { OverlayProps } from '../types/interfaces';
 import Form from './Form'
-import { stores } from '../stores/stores'
 import { observer } from 'mobx-react-lite';
 
 const Overlay = observer((props: OverlayProps) => {
 
     const {
+        map,
         name,
         feature,
         onSaveClick
     } = props
-
-    const { map } = stores.mapStore
 
     return (
         <>

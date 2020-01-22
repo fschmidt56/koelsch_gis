@@ -100,7 +100,7 @@ margin: 15px;
   top: 0;
   background-color: rgba(23,23,23, 0.95); 
   overflow-x: hidden; 
-  border-right: 5px solid #5babea;
+  border-right: 10px solid #5babea;
 }
 
 .featureInfos {

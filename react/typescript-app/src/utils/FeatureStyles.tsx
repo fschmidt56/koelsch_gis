@@ -20,7 +20,7 @@ function styleFillColor(feature: FeatureLike): fillColor<string> {
     case 'Schreckenskammer': return { color: '#ffffff' };
     case 'Sion': return { color: '#ffffff' };
     case 'Sünner': return { color: '#f6e494' };
-    case 'Zunft': return { color: '#017b5d' };
+    case 'Zunft': return { color: '#019a74' };
     default: return { color: '#474749' };
   }
 }
@@ -43,7 +43,7 @@ function styleStrokeColor(feature: FeatureLike): strokeColor<string, number> {
     case 'Schreckenskammer': return { color: '#922743', width: 3 };
     case 'Sion': return { color: '#002245', width: 3 };
     case 'Sünner': return { color: '#007527', width: 3 };
-    case 'Zunft': return { color: '#232323', width: 3 };
+    case 'Zunft': return { color: '#017b5d', width: 3 };
     default: return { color: '#d3d3d3', width: 3 };
   }
 }
