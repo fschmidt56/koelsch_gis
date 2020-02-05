@@ -1,0 +1,20 @@
+import { ActionTypes } from "../actions/index";
+import { InitialMapState, Actions } from '../../types/interfaces';
+
+//initialer State des Projektes
+const initalMapState: InitialMapState = {
+    map: null,
+}
+
+//reducer für map-state
+export const currentMapState = (state: InitialMapState = initalMapState, action: Actions): InitialMapState => {
+    switch (action.type) {
+        //set Basemap
+        case ActionTypes.SET_MAP:
+            return Object.assign({}, state, {
+                map: action.payload,
+            });
+        default:
+            return state;
+    }
+};

@@ -6,13 +6,13 @@ import { MapBrowserEvent } from 'ol';
 import Feature, { FeatureLike } from 'ol/Feature';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../stores/store';
-import { setSelectedFeature } from '../actions';
+import { setSelectedFeature } from '../actions/setSelectedFeatureAction';
 
 const mapListeners = [];
 
 const ShowInfo = (props: InfoProps): JSX.Element => {
 
-    const selectedFeature = useSelector((state: RootState) => state.currentMapState.selectedFeature)
+    const selectedFeature = useSelector((state: RootState) => state.currentFeatureState.selectedFeature)
     const dispatch = useDispatch()
 
     const {

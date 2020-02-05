@@ -4,7 +4,7 @@ import ButtonGroup from '../../redux/Components/ButtonGroup_Redux'
 import { MapUtils } from '../../utils/MapUtils';
 import { MapProps } from '../../types/interfaces';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMap } from '../actions/index';
+import { setMap } from '../actions/setMapAction';
 import { RootState } from '../stores/store';
 
 const Basemap = (props: MapProps) => {
@@ -17,7 +17,7 @@ const Basemap = (props: MapProps) => {
     }, [dispatch]);
     return (
         <>
-            <div id='map' className='map' ></div>
+            <div id='map' className='map' data-testid='basemap'></div>
             <ButtonGroup map={map} />
         </>
     )

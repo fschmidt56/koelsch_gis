@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Draw, { DrawEvent } from 'ol/interaction/Draw';
 import { Feature, } from 'ol';
 import Button from '../../Components/Button';
@@ -10,7 +10,7 @@ import Overlay from '../../Components/Overlay';
 import { EventsKey } from 'openlayers';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../stores/store';
-import { showOverlay } from '../actions/index';
+import { showOverlay } from '../actions/showOverlayAction';
 
 let draw: Draw = new Draw({
     source: datasource,
@@ -22,7 +22,7 @@ let listenerFunctions: EventsKey[] = [];
 
 const DrawPoints = (props: DrawProps): JSX.Element => {
 
-    const overlay = useSelector((state: RootState) => state.currentMapState.overlay);
+    const overlay = useSelector((state: RootState) => state.currentOverlayState.overlay);
     const dispatch = useDispatch();
 
     const {
@@ -30,7 +30,8 @@ const DrawPoints = (props: DrawProps): JSX.Element => {
         map,
     } = props;
 
-
+    const isFirst = useRef(true);
+    
     if (map) {
         map.addInteraction(draw);
         draw.setActive(isActive);
@@ -43,7 +44,7 @@ const DrawPoints = (props: DrawProps): JSX.Element => {
 
     useEffect(() => {
         draw.setActive(isActive);
-        dispatch(showOverlay(null));
+        isFirst.current ? isFirst.current = false : dispatch(showOverlay(null)); //isActive ? 
         refreshData();
     }, [isActive, dispatch])
 
@@ -69,8 +70,7 @@ const DrawPoints = (props: DrawProps): JSX.Element => {
         if (checkInputLetters(feature.get('gastro')) && checkInputLetters(feature.get('bier')) && checkInputNumbers(feature.get('preis'))) {
             let xmlString = new XMLSerializer().serializeToString(
                 wfsTransaction.writeTransaction([feature], [], [], transactionParameters)
-            )
-            console.log(xmlString);
+            )            
             fetch(geoserverTransactionURL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -82,7 +82,6 @@ const DrawPoints = (props: DrawProps): JSX.Element => {
         }
         else {
             console.log('Error: Feature was not created. <br>Only letters and whitespace allowed for Name and Kölsch.<br>Only numbers and decimal seperator allowed for Preis.');
-
         }
         refreshData();
         draw.setActive(!draw.getActive());

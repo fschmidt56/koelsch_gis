@@ -6,7 +6,7 @@ import Basemap from './redux/Components/Basemap_Redux';
 
 const App: React.FC = (): JSX.Element => {
   return (
-    <div className="map">
+    <div className='map' data-testid='map'>
         <Basemap />
     </div>
   );

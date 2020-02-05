@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Select, { SelectEvent } from 'ol/interaction/Select'
 import Modify, { ModifyEvent } from 'ol/interaction/Modify';
 import Button from '../../Components/Button';
@@ -10,7 +10,7 @@ import { ModifyProps } from '../../types/interfaces';
 import Overlay from '../../Components/Overlay';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../stores/store';
-import { showOverlay } from '../actions/index';
+import { showOverlay } from '../actions/showOverlayAction';
 import { EventsKey } from 'openlayers';
 
 const select: Select = MapUtils.createSelect();
@@ -20,7 +20,7 @@ let listenerFunctions: EventsKey[] = [];
 
 const ModifyPoints = (props: ModifyProps): JSX.Element => {
 
-    const overlay = useSelector((state: RootState) => state.currentMapState.overlay);
+    const overlay = useSelector((state: RootState) => state.currentOverlayState.overlay);
     const dispatch = useDispatch();
 
     const {
@@ -28,10 +28,13 @@ const ModifyPoints = (props: ModifyProps): JSX.Element => {
         map,
     } = props
 
+    const isFirst = useRef(true);
+
     useEffect(() => {
         select.setActive(isActive);
         modify.setActive(false);
-        dispatch(showOverlay(null));
+        //dispatch(showOverlay(null));
+        isFirst.current ? isFirst.current = false : dispatch(showOverlay(null))
         refreshData();
     }, [isActive, dispatch])
 

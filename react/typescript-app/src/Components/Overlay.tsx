@@ -1,6 +1,6 @@
 import React from 'react';
 import { OverlayProps } from '../types/interfaces';
-import Form from './Form'
+import Form from '../redux/Components/Form_Redux';
 import { observer } from 'mobx-react-lite';
 
 const Overlay = observer((props: OverlayProps) => {

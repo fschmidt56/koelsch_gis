@@ -116,7 +116,6 @@ margin: 15px;
   vertical-align: middle;
 }
 
-
 @media screen and (max-width: 450px), (max-height: 450px) {
   .overlay {width: 75%}
   .overlay a {font-size: 15px}

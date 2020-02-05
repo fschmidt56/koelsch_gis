@@ -1,9 +1,9 @@
 import { FeatureLike } from 'ol/Feature';
 import { Circle, Style, Stroke, Fill } from 'ol/style';
-import {fillColor, strokeColor} from '../types/interfaces';
+import {FillColor, StrokeColor} from '../types/interfaces';
 
 //fillColor koelsch
-function styleFillColor(feature: FeatureLike): fillColor<string> {
+function styleFillColor(feature: FeatureLike): FillColor<string> {
   let sorte: string = feature.get('bier')
   switch (sorte) {
     case 'Dom': return { color: '#d42426' };
@@ -19,14 +19,14 @@ function styleFillColor(feature: FeatureLike): fillColor<string> {
     case 'Schmitz': return { color: '#ffffff' };
     case 'Schreckenskammer': return { color: '#ffffff' };
     case 'Sion': return { color: '#ffffff' };
-    case 'Sünner': return { color: '#f6e494' };
+    case 'Sünner': return { color: '#dddddd' };
     case 'Zunft': return { color: '#019a74' };
     default: return { color: '#474749' };
   }
 }
 
 //strokeColor koelsch
-function styleStrokeColor(feature: FeatureLike): strokeColor<string, number> {
+function styleStrokeColor(feature: FeatureLike): StrokeColor<string, number> {
   let sorte: string = feature.get('bier')
   switch (sorte) {
     case 'Dom': return { color: '#8c1918', width: 3 };
