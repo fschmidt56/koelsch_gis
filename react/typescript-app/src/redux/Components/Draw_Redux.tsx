@@ -2,22 +2,17 @@ import React, { useEffect, useRef } from 'react';
 import Draw, { DrawEvent } from 'ol/interaction/Draw';
 import { Feature, } from 'ol';
 import Button from '../../Components/Button';
-import { datasource } from '../../utils/vectorlayer';
 import { checkInputLetters, checkInputNumbers, refreshData } from '../../utils/otherFunctions';
-import { requestHeaders, transactionParameters, wfsTransaction, geoserverTransactionURL, geometryType } from '../../config/config';
+import { requestHeaders, transactionParameters, wfsTransaction, geoserverTransactionURL } from '../../config/config';
 import { DrawProps } from '../../types/interfaces';
 import Overlay from '../../Components/Overlay';
 import { EventsKey } from 'openlayers';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../stores/store';
 import { showOverlay } from '../actions/showOverlayAction';
+import { MapUtils } from '../../utils/MapUtils';
 
-let draw: Draw = new Draw({
-    source: datasource,
-    type: geometryType,
-    geometryName: 'geom',
-});
-
+const draw: Draw = MapUtils.createDraw();
 let listenerFunctions: EventsKey[] = [];
 
 const DrawPoints = (props: DrawProps): JSX.Element => {
@@ -31,7 +26,7 @@ const DrawPoints = (props: DrawProps): JSX.Element => {
     } = props;
 
     const isFirst = useRef(true);
-    
+
     if (map) {
         map.addInteraction(draw);
         draw.setActive(isActive);
@@ -44,7 +39,7 @@ const DrawPoints = (props: DrawProps): JSX.Element => {
 
     useEffect(() => {
         draw.setActive(isActive);
-        isFirst.current ? isFirst.current = false : dispatch(showOverlay(null)); //isActive ? 
+        isFirst.current ? isFirst.current = false : dispatch(showOverlay(null));
         refreshData();
     }, [isActive, dispatch])
 
@@ -70,7 +65,7 @@ const DrawPoints = (props: DrawProps): JSX.Element => {
         if (checkInputLetters(feature.get('gastro')) && checkInputLetters(feature.get('bier')) && checkInputNumbers(feature.get('preis'))) {
             let xmlString = new XMLSerializer().serializeToString(
                 wfsTransaction.writeTransaction([feature], [], [], transactionParameters)
-            )            
+            )
             fetch(geoserverTransactionURL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -97,7 +92,13 @@ const DrawPoints = (props: DrawProps): JSX.Element => {
                 fai='fa fa-map-marker fa-2x'
                 onClick={handleDraw}
             />
-            {overlay}
+
+            {
+                isActive ?
+                    overlay
+                    :
+                    null
+            }
         </>
     )
 }

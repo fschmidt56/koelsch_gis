@@ -73,11 +73,12 @@ const Form = (props: KoelschProps): JSX.Element => {
             required
           />
           <br></br>
-          <input type="submit" value="Create" />
+          <input id="submitData" type="submit" value="Create" />
         </form>
       </React.Fragment>
     )
   }
+
   if (name === 'modify') {
     return (
       <React.Fragment>
@@ -127,7 +128,7 @@ const Form = (props: KoelschProps): JSX.Element => {
             }}
             required
           /><br></br>
-          <input type="submit" value="Modify" />
+          <input id="submitData" type="submit" value="Modify" />
         </form>
       </React.Fragment>
     )

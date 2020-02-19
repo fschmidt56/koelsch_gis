@@ -2,9 +2,10 @@ import { Map, View } from 'ol';
 import TileLayer from 'ol/layer/Tile';
 import XYZSource from 'ol/source/XYZ';
 import vectorLayer from './vectorlayer';
+import Draw from 'ol/interaction/Draw';
 import Select from 'ol/interaction/Select';
-import Modify from 'ol/interaction/Modify'
-import { mapCenter, mapZoom, rotationStatus, baseLayerURL } from '../config/config';
+import Modify from 'ol/interaction/Modify';
+import { mapCenter, mapZoom, rotationStatus, baseLayerURL, geometryType } from '../config/config';
 import { datasource } from './vectorlayer';
 import { styleKoelschSelected } from './FeatureStyles';
 
@@ -33,7 +34,7 @@ export class MapUtils {
                 enableRotation: rotationStatus,
             })
         });
-          return map;
+        return map;
     }
 
     static createSelect() {
@@ -49,5 +50,14 @@ export class MapUtils {
             style: styleKoelschSelected
         });
         return modify;
+    }
+
+    static createDraw() {
+        const draw: Draw = new Draw({
+            source: datasource,
+            type: geometryType,
+            geometryName: 'geom',
+        });
+        return draw;
     }
 }

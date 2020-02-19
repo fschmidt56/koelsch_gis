@@ -4,7 +4,6 @@ import { ActionTypes } from "../actions";
 //initialer State des Projektes
 const initialMapState: InitialMapState = {
     map: null,
-   
 }
 
 //reducer für map-state

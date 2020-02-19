@@ -33,7 +33,6 @@ const ModifyPoints = (props: ModifyProps): JSX.Element => {
     useEffect(() => {
         select.setActive(isActive);
         modify.setActive(false);
-        //dispatch(showOverlay(null));
         isFirst.current ? isFirst.current = false : dispatch(showOverlay(null))
         refreshData();
     }, [isActive, dispatch])
@@ -108,7 +107,12 @@ const ModifyPoints = (props: ModifyProps): JSX.Element => {
                 fai='fa fa-edit fa-2x'
                 onClick={handleModify}
             />
-            {overlay}
+            {
+                isActive ?
+                    overlay
+                    :
+                    null
+            }
         </>
     )
 }
