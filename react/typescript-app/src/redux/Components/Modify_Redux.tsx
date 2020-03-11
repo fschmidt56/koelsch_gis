@@ -86,6 +86,7 @@ const ModifyPoints = (props: ModifyProps): JSX.Element => {
                 body: xmlString
             })
                 .then(response => console.log('Feature successfully modified.'))
+                .then(refreshData)
                 .catch(error => console.log(error + 'Feature was not modified.'));
         }
         else {
@@ -96,7 +97,6 @@ const ModifyPoints = (props: ModifyProps): JSX.Element => {
         select.setActive(false);
         props.onActiveChange(false);
         dispatch(showOverlay(null));
-        refreshData();
     }
 
     return (

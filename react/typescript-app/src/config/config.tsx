@@ -19,7 +19,6 @@ export const transactionParameters: TransactionsGeoserver<string, object[]> = {
     srsName: 'EPSG:3857',
 };
 
-
 //transactions
 export const requestHeaders = new Headers({
     'Content-Type': 'text/plain',
@@ -27,17 +26,30 @@ export const requestHeaders = new Headers({
 });
 export const wfsTransaction: WFS = new WFS();
 
+export const orsHeaders = {
+    'Content-Type': 'application/json'
+}
+
 //URLs
 export const geoserverTransactionURL: string = 'http://10.133.7.119/geoserver/wfs?service=wfs&version=1.1.0';
 export const baseLayerURL = 'https://{1-4}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+export const routingURL = 'http://10.133.7.119:7000/locations';
+export const geoJsonURL = 'http://10.133.7.119:7000/geojson';
 
-//map-properties
+//map-properties and EPSGs
 export const mapCenter = [774444.5768, 6611028.9864];
 export const mapZoom = 11;
 export const rotationStatus = false;
+export const srcEpsg: string = 'EPSG:3857';
+export const destEpsg: string = 'EPSG:4326';
 
 //edit properties
 export const geometryType: GeometryType = GeometryType.POINT;
+
+export enum Projections {
+    EPSG_4326 = 'EPSG:4326',
+    EPSG_3857 = 'EPSG:3857'
+}
 
 
 

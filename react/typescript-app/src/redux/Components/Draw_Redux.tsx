@@ -73,12 +73,12 @@ const DrawPoints = (props: DrawProps): JSX.Element => {
                 body: xmlString
             })
                 .then(response => console.log('Feature successfully created.'))
+                .then(refreshData)
                 .catch(error => console.log(error + 'Feature was not created.'));
         }
         else {
             console.log('Error: Feature was not created. <br>Only letters and whitespace allowed for Name and Kölsch.<br>Only numbers and decimal seperator allowed for Preis.');
         }
-        refreshData();
         draw.setActive(!draw.getActive());
         props.onActiveChange(draw.getActive());
         dispatch(showOverlay(null));

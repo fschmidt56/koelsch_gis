@@ -133,6 +133,50 @@ const Form = (props: KoelschProps): JSX.Element => {
       </React.Fragment>
     )
   }
+
+  if (name === 'route') {
+    return (
+      <React.Fragment>
+        <form
+          className="form"
+          onSubmit={onSubmitClick}
+        >
+          <input
+            id="anzahl"
+            type="number"
+            name="anzahl"
+            placeholder="Anzahl"
+            min="2"
+            max="12"
+            step="1"
+            onChange={(changeEvent: any) => {
+              if (feature) {
+                feature.set('anzahl', changeEvent.target.value)
+              }
+            }}
+            required
+          /><br></br>
+          <input
+            id="budget"
+            type="number"
+            name="budget"
+            placeholder="Budget"
+            min="5"
+            max="30"
+            step="0.5"
+            onChange={(changeEvent: any) => {
+              if (feature) {
+                feature.set('budget', changeEvent.target.value)
+              }
+            }}
+            required
+          /><br></br>
+          <input id="submitData" type="submit" value="Routing..." />
+        </form>
+      </React.Fragment>
+    )
+  }
+  
   else {
     return (
       <React.Fragment>

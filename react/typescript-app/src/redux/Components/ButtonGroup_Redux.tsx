@@ -1,5 +1,6 @@
 import React from 'react';
 import { ButtonGroupProps } from '../../types/interfaces';
+import CalculateRoute from './Route_Redux';
 import DrawButton from './Draw_Redux';
 import ModifyButton from './Modify_Redux';
 import DeleteButton from '../../Components/Delete';
@@ -39,6 +40,11 @@ const ButtonGroup = (props: ButtonGroupProps) => {
                     map={map}
                     isActive={activeButton === 'info'}
                     onActiveChange={(status: boolean) => status ? dispatch(setActive('info')) : dispatch(setActive(undefined))}
+                />
+                <CalculateRoute
+                    map={map}
+                    isActive={activeButton === 'route'}
+                    onActiveChange={(status: boolean) => status ? dispatch(setActive('route')) : dispatch(setActive(undefined))}
                 />
             </div>
         </>

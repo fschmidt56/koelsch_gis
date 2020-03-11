@@ -12,8 +12,8 @@ const mapListeners = [];
 
 const ShowInfo = (props: InfoProps): JSX.Element => {
 
-    const selectedFeature = useSelector((state: RootState) => state.currentFeatureState.selectedFeature)
-    const dispatch = useDispatch()
+    const selectedFeature = useSelector((state: RootState) => state.currentFeatureState.selectedFeature);
+    const dispatch = useDispatch();
 
     const {
         map,
@@ -22,7 +22,7 @@ const ShowInfo = (props: InfoProps): JSX.Element => {
         ...passThroughProps
     } = props;
 
-    let prevSelected: Feature[] = []
+    let prevSelected: Feature[] = [];
 
     if (map) {
         if (mapListeners.length === 0) {

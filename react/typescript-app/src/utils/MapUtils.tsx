@@ -5,9 +5,12 @@ import vectorLayer from './vectorlayer';
 import Draw from 'ol/interaction/Draw';
 import Select from 'ol/interaction/Select';
 import Modify from 'ol/interaction/Modify';
-import { mapCenter, mapZoom, rotationStatus, baseLayerURL, geometryType } from '../config/config';
+import { mapCenter, mapZoom, rotationStatus, baseLayerURL, geometryType, Projections } from '../config/config';
 import { datasource } from './vectorlayer';
-import { styleKoelschSelected } from './FeatureStyles';
+import { styleKoelschSelected, routeStyle, locationsIcon } from './FeatureStyles';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import GeoJSON from 'ol/format/GeoJSON';
 
 export class MapUtils {
     static createBaseLayer() {
@@ -59,5 +62,37 @@ export class MapUtils {
             geometryName: 'geom',
         });
         return draw;
+    }
+
+    static createVectorLine(source: VectorSource) {
+        const vectorLayer: VectorLayer = new VectorLayer({
+            source: source,
+            style: routeStyle
+        });
+        return vectorLayer;
+    }
+
+    static createVectorPoint(source: VectorSource) {
+        const vectorLayer: VectorLayer = new VectorLayer({
+            source: source,
+            style: locationsIcon
+        });
+        return vectorLayer;
+    }
+
+    static createVectorSource(data: GeoJSON) {
+        const vectorSource: VectorSource = new VectorSource({
+            format: new GeoJSON({
+                dataProjection: Projections.EPSG_4326,
+                featureProjection: Projections.EPSG_3857
+            })
+        });
+        let geoJsonData = new GeoJSON({
+            dataProjection: Projections.EPSG_4326,
+            featureProjection: Projections.EPSG_3857
+        });
+        let features = geoJsonData.readFeatures(data);
+        vectorSource.addFeatures(features);
+        return vectorSource;
     }
 }

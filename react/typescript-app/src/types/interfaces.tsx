@@ -2,6 +2,7 @@ import { Map } from 'ol';
 import Feature from 'ol/Feature';
 import { ActionTypes } from '../redux/actions';
 
+
 //INTERFACES
 export interface Action_Button {
   type: typeof Action.AButton,
@@ -66,6 +67,17 @@ export interface IInfoStore {
   setSelectedFeature: (feature: Feature) => void
 }
 
+export interface IRoute<T> {
+    bars: T,
+    budget: T,
+    radius: T,
+    startPoint: T[],
+    endPoint: T[],
+    center: T[],
+    distance: T,
+    extent: T[]
+}
+
 export interface InfoProps extends React.HTMLProps<HTMLButtonElement>, DigitizeButtonProps{
 }
 
@@ -113,6 +125,9 @@ export interface OverlayProps {
   onSaveClick?: (feature: Feature) => void | undefined,
 }
 
+export interface RouteProps extends DigitizeButtonProps {
+}
+
 export interface SelectProps extends DigitizeButtonProps {
 }
 
@@ -129,16 +144,17 @@ export interface TransactionsGeoserver<T, U> {
   srsName: T,
 }
 
+
 //TYPES
 export type Actions = Action_Map | Action_Button | Action_Overlay | Action_Feature;
 
-export type ActiveButton = 'draw' | 'modify' | 'delete' | 'info' | undefined;
+export type ActiveButton = 'draw' | 'modify' | 'delete' | 'info' | 'route' | undefined;
 
 export type BasemapState = null | Map;
 
 export type InteractionType = null | JSX.Element;
 
-export type OverlayNames = 'draw' | 'modify' | 'delete' | 'info' | null;
+export type OverlayNames = 'draw' | 'modify' | 'delete' | 'info' | 'route' | null;
 
 //CONST ASSERTION
 export const Action = {

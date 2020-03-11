@@ -1,6 +1,22 @@
 import { FeatureLike } from 'ol/Feature';
-import { Circle, Style, Stroke, Fill } from 'ol/style';
-import {FillColor, StrokeColor} from '../types/interfaces';
+import { Circle, Style, Stroke, Fill, Icon } from 'ol/style';
+import { FillColor, StrokeColor } from '../types/interfaces';
+import routeIcon from '../img/routeIcon.png';
+
+//routeStyle
+export const routeStyle = new Style({
+    stroke: new Stroke({
+      color: '#00bfff',
+      width: 2.5
+    })
+  })
+//routeIcon
+export const locationsIcon = new Style({
+  image: new Icon({
+    src: routeIcon,   
+    size: [32, 32],
+  })
+})
 
 //fillColor koelsch
 function styleFillColor(feature: FeatureLike): FillColor<string> {
@@ -72,3 +88,4 @@ export function styleKoelschSelected(feature: FeatureLike) {
   })
   return koelsch_style_selected;
 }
+

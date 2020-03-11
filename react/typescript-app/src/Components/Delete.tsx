@@ -37,8 +37,8 @@ const DeletePoints = (props: SelectProps): JSX.Element => {
                     body: xmlString
                 })
                     .then(response => console.log('Feature deleted.'))
+                    .then(refreshData)
                     .catch(error => console.log(error + 'Feature was not deleted.'));
-                refreshData();
                 select.setActive(false);
                 props.onActiveChange(select.getActive())
             })
