@@ -8,13 +8,12 @@ import Overlay from '../../Components/Overlay';
 import Draw, { DrawEvent } from 'ol/interaction/Draw';
 import { MapUtils } from '../../utils/MapUtils';
 import { EventsKey, geom } from 'openlayers';
-import { refreshData, checkInputNumbers } from '../../utils/otherFunctions';
+import { refreshData, checkInputNumbers, zoomToLayer, deleteLastRoute } from '../../utils/otherFunctions';
 import Point from 'ol/geom/Point';
 import { Feature, } from 'ol';
 import { destEpsg, srcEpsg, routingURL, orsHeaders, geoJsonURL } from '../../config/config';
 import { getDistance } from 'ol/sphere';
 import { boundingExtent } from 'ol/extent';
-import BeerCap from './Deckel';
 
 const draw: Draw = MapUtils.createDraw();
 let listenerFunctions: EventsKey[] = [];
@@ -41,7 +40,6 @@ const CalculateRoute = (props: RouteProps): JSX.Element => {
             console.log('Added route interaction to map.');
         }
     }
-
     //onClick routeButton
     function getRoutePoints() {
         props.onActiveChange(!isActive ? true : false);
@@ -72,6 +70,7 @@ const CalculateRoute = (props: RouteProps): JSX.Element => {
     }
 
     const onSaveClick = (feature: Feature) => {
+        deleteLastRoute(map)
         if (checkInputNumbers(feature.get('anzahl')) && checkInputNumbers(feature.get('budget'))) {
             let numberOfBars: number = feature.get('anzahl');
             let budget: number = feature.get('budget');
@@ -100,7 +99,8 @@ const CalculateRoute = (props: RouteProps): JSX.Element => {
                 .then(response => response.json())
                 .then(geojson => MapUtils.createVectorSource(geojson))
                 .then(source => MapUtils.createVectorLine(source))
-                .then(layer => map!.addLayer(layer))
+                .then(layer => map!.addLayer(layer))      
+                .then(() => zoomToLayer(map))          
                 .then(() => {
                     return fetch(geoJsonURL, {
                         method: 'GET',

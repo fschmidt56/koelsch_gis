@@ -27,7 +27,6 @@ export class MapUtils {
 
     static createMap() {
         const baseLayer = this.createBaseLayer();
-
         const map = new Map({
             target: 'map',
             layers: [baseLayer, vectorLayer],
@@ -67,7 +66,8 @@ export class MapUtils {
     static createVectorLine(source: VectorSource) {
         const vectorLayer: VectorLayer = new VectorLayer({
             source: source,
-            style: routeStyle
+            extent: source.getExtent(),
+            style: routeStyle,          
         });
         return vectorLayer;
     }
@@ -75,7 +75,8 @@ export class MapUtils {
     static createVectorPoint(source: VectorSource) {
         const vectorLayer: VectorLayer = new VectorLayer({
             source: source,
-            style: locationsIcon
+            extent: source.getExtent(),
+            style: locationsIcon,
         });
         return vectorLayer;
     }
@@ -85,14 +86,17 @@ export class MapUtils {
             format: new GeoJSON({
                 dataProjection: Projections.EPSG_4326,
                 featureProjection: Projections.EPSG_3857
-            })
+            })            
         });
+
         let geoJsonData = new GeoJSON({
             dataProjection: Projections.EPSG_4326,
             featureProjection: Projections.EPSG_3857
         });
-        let features = geoJsonData.readFeatures(data);
+        
+        const features = geoJsonData.readFeatures(data);
         vectorSource.addFeatures(features);
+        vectorSource.getExtent();
         return vectorSource;
     }
 }
